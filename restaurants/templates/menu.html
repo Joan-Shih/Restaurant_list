@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Menu</title>
+	<link rel="stylesheet"  href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+	<link rel="stylesheet"  href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap-theme.min.css">
+	<style>
+		th { text-align :center; }
+		div.menus {
+			text-align: center;
+			padding :40px 15px;
+		}
+	</style>
+</head>
+<body>
+<p>您現在在{{ path }}</p>
+{% comment %}
+可以加入上方導航列的bootstrap
+{% endcomment %}
+<div class = "container">
+<div class = "menus">
+<p>
+<h2>{{ r.name }}的Menu</h2>
+{% if r.food_set.all %}
+<p>本餐廳共有{{ r.food_set.all|length }}道菜</p>
+<table class = "table">
+	<tr>
+		<th>菜名</th>
+		<th>價格</th>
+		<th>辣不辣</th>
+		<th>註解</th>
+	</tr>
+	{% for f in r.food_set.all %}
+	<tr>
+		<td>{{ f.name }}</td>
+		<td>{{ f.price }}</td>
+		{%　if f.is_spicy %}
+		<td>辣</td>
+		{% else %}
+		<td>不辣</td>
+		{% endif %}
+		<td>{{ f.comment }}</td>
+
+	</tr>
+	{% endfor %}
+</table>
+</p>
+{% else %}
+<p>本餐廳啥都沒賣</p>
+{% endif %}
+
+</div>
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Restaurants</title>
+	<link rel="stylesheet"  href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+	<link rel="stylesheet"  href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap-theme.min.css">
+	<style>
+		th { text-align :center; }
+		div.list {
+			text-align: center;
+			padding :40px 15px;
+		}
+	</style>
+</head>
+<body>
+<div class = "container">
+<div class = "list">
+	<h2>餐廳列表</h2>
+	
+	<table class = "table">
+		<tr>
+			<th>觀看menu</th>
+			<th>店名</th>
+			<th>電話</th>
+			<th>地址</th>
+			{% if perms.restaurants.see_comment %}
+			<th>評價</th>
+			{% endif %}
+		</tr>
+		{% for r in restaurants %}
+		<tr>
+			<td><a href="/menu/{{ r.id }}/">menu</a></td>
+			<td>{{ r.name }}</td>
+			<td>{{ r.phone_number }}</td>
+			<td>{{ r.address }}</td>	
+			{% if perms.restaurants.see_comment %}
+			<td><a href="/comment/{{r.id}}">comment</a></td>
+			{% endif %}		
+		</tr>
+		{% endfor %}
+		
+	</table>
+	
+</div>
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+</body>
+</html>

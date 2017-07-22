@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Restaurant King</title>
+</head>
+<body>
+	<h2>歡迎來到餐廳王</h2>
+	<h1>{{ really }}</h1>
+	{% if request.user.is_authenticated %}
+	<p>{{ request.user }}您已經登入摟</p>
+	<p><a href="/accounts/logout/">登出</a></p>
+	<p><a href="/restaurants_list/">進入餐廳列表</a></p>
+	{%else%}
+	<p>您尚未登入<a href="/accounts/login/">登入</a></p>
+	<p><a href="/register/">註冊新帳號</a></p>
+	{% endif %}
+
+</body>
+</html>
